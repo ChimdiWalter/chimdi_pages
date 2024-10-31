@@ -18,7 +18,4 @@ I am a PhD researcher focused on computer vision and image processing. My work i
    Brief description of the publication.  
    - [Link to Paper](#)
 
-2. **[Publication Title 2]**  
-   Brief description of the publication.  
-   - [Link to Paper](#)
 
