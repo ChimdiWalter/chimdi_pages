@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chimdi Walter Ndubuisi</title>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --text: #2A2A32;
+    --text-mid: #555560;
+    --text-light: #7A7A82;
+    --accent: #2D7A6F;
+    --accent-hover: #3A9A8C;
+    --accent-faint: rgba(45,122,111,0.08);
+    --border: #E4E0DA;
+    --card-bg: #FFFFFF;
+    --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141518;
+      --text: #D8D5CF;
+      --text-mid: #9A978F;
+      --text-light: #6E6B65;
+      --accent: #5DB8AA;
+      --accent-hover: #78D0C2;
+      --accent-faint: rgba(93,184,170,0.08);
+      --border: #2A2A30;
+      --card-bg: #1C1D22;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141518;
+    --text: #D8D5CF;
+    --text-mid: #9A978F;
+    --text-light: #6E6B65;
+    --accent: #5DB8AA;
+    --accent-hover: #78D0C2;
+    --accent-faint: rgba(93,184,170,0.08);
+    --border: #2A2A30;
+    --card-bg: #1C1D22;
+  }
+  :root[data-theme="light"] {
+    --bg: #FAF8F5;
+    --text: #2A2A32;
+    --text-mid: #555560;
+    --text-light: #7A7A82;
+    --accent: #2D7A6F;
+    --accent-hover: #3A9A8C;
+    --accent-faint: rgba(45,122,111,0.08);
+    --border: #E4E0DA;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+  a:hover { color: var(--accent-hover); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  ::selection { background: var(--accent-faint); }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 28px 48px;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .photo {
+    width: 138px;
+    height: 138px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+  }
+  .header-text h1 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    text-wrap: balance;
+  }
+  .affiliation {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: 0.88rem;
+  }
+  .links a { letter-spacing: 0.01em; }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 44px; }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .section p {
+    font-size: 0.95rem;
+    color: var(--text);
+    max-width: 62ch;
+  }
+  .section p + p { margin-top: 10px; }
+
+  /* ── Research themes ── */
+  .themes { display: flex; flex-direction: column; gap: 18px; }
+  .theme {
+    border-left: 3px solid var(--accent);
+    padding: 14px 0 14px 20px;
+  }
+  .theme h3 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .theme p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+  .theme-tags {
+    margin-top: 7px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Publications ── */
+  .pub-category {
+    font-family: var(--serif);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+  .pub-category:first-of-type { margin-top: 0; }
+  .pubs { list-style: none; }
+  .pubs li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 7px 0;
+    color: var(--text-mid);
+  }
+  .pubs li + li { border-top: 1px solid var(--border); }
+  .pubs .title {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text);
+  }
+  .pubs .venue { color: var(--text-light); }
+  .pubs .pub-links { font-size: 0.82rem; }
+  .pubs .pub-links a { margin-right: 8px; }
+
+  /* ── Projects ── */
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .proj {
+    padding: 16px 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.15s;
+  }
+  .proj:hover { border-color: var(--accent); }
+  .proj h3 {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .proj h3 a { color: var(--text); }
+  .proj h3 a:hover { color: var(--accent); }
+  .proj p {
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ── Honors ── */
+  .honors {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+  .honors li::after {
+    content: "\00a0\00b7\00a0";
+    color: var(--text-light);
+  }
+  .honors li:last-child::after { content: ""; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 20px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-light);
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .page { padding: 36px 20px 36px; }
+    .header { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+    .photo { width: 110px; height: 110px; }
+    .header-text h1 { font-size: 1.6rem; }
+    .links { justify-content: center; }
+    .projects { grid-template-columns: 1fr; }
+    .section p { max-width: none; }
+    .theme p { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <img src="profile.jpg" alt="Chimdi Walter Ndubuisi" class="photo">
+    <div class="header-text">
+      <h1>Chimdi Walter Ndubuisi</h1>
+      <div class="affiliation">
+        Ph.D. Candidate, Electrical &amp; Computer Engineering<br>
+        University of Missouri, Columbia<br>
+        Research Affiliate, Lawrence Berkeley National Laboratory
+      </div>
+      <nav class="links">
+        <a href="mailto:cnptp@missouri.edu">Email</a>
+        <a href="https://orcid.org/0000-0003-3277-4206" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://github.com/ChimdiWalter" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/chimdi-ndubuisi-518607158" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://mmcvlab.github.io/" target="_blank" rel="noopener">MMCV Lab</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Research Vision -->
+  <div class="section">
+    <span class="section-label">Research</span>
+    <p>
+      I develop methods at the intersection of <strong>topology, differential geometry,
+      and deep learning</strong> for scientific imaging&mdash;primarily in plant phenotyping.
+      Working with maize lesion mimic mutants as a model system, I build physics-informed
+      segmentation pipelines, including a novel <strong>Navier&ndash;Stokes active-contour
+      framework</strong>, to extract high-fidelity lesion masks at scale.
+      These masks are mapped onto <strong>phenotypic manifolds</strong> that link
+      visual morphology to underlying biochemical pathways&mdash;closing the loop
+      between what a camera sees and what a genome encodes.
+    </p>
+    <p>
+      The long-term aim is to resolve <strong>breeding bottlenecks</strong> that limit
+      crop improvement and food sustainability.
+      The geometric and topological toolkit transfers directly:
+      I apply the same ideas to single-cell transcriptomics, oncology,
+      omics feature selection, and causal discovery across biological domains.
+    </p>
+  </div>
+
+  <!-- Research Themes -->
+  <div class="section">
+    <span class="section-label">Themes</span>
+    <div class="themes">
+
+      <div class="theme">
+        <h3>Physics-Informed Segmentation</h3>
+        <p>
+          GPU-accelerated Navier&ndash;Stokes active contours with vorticity-based proxy scoring,
+          wavelet&ndash;diffusion&ndash;SSL fusion pipelines, and semi-amortized inference for
+          uncertainty-guided phenotyping&mdash;deployed on HPC clusters via containerized SLURM workflows.
+        </p>
+        <div class="theme-tags">Navier&ndash;Stokes &middot; Active Contours &middot; HPC / SLURM</div>
+      </div>
+
+      <div class="theme">
+        <h3>Topology &amp; Geometry for Vision</h3>
+        <p>
+          Product-manifold latent spaces (hyperbolic &times; Euclidean &times; spherical),
+          HyperTopo-Adapters for frozen encoders, and persistent-homology descriptors
+          that fuse morphological, colorimetric, and topological features for lesion characterization.
+        </p>
+        <div class="theme-tags">TDA &middot; Manifold Learning &middot; Ricci Curvature</div>
+      </div>
+
+      <div class="theme">
+        <h3>Omics &amp; Computational Biology</h3>
+        <p>
+          Geometry-sensitive sparse persistent representatives (CC-SPR) for interpretable omics
+          feature selection; Ricci-curvature classifiers for diffusion geometry; causal discovery
+          on genome-scale Perturb-seq; single-cell modeling at the geometry&ndash;dynamics&ndash;interpretability tradeoff.
+        </p>
+        <div class="theme-tags">CC-SPR &middot; Perturb-seq &middot; Single-Cell &middot; Oncology</div>
+      </div>
+
+      <div class="theme">
+        <h3>Multimodal Protein AI <span style="font-weight:400; color:var(--text-light);">&mdash; LBNL</span></h3>
+        <p>
+          Building SE(3)-aware multimodal foundation models that integrate SAXS profiles,
+          protein sequence, 3D structure, and conformational ensembles.
+          Generating physically plausible conformers via elastic-network normal-mode displacement
+          and validating against experimental scattering data.
+        </p>
+        <div class="theme-tags">SAXS &middot; SE(3) &middot; Conformer Ensembles &middot; ANM</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Publications -->
+  <div class="section">
+    <span class="section-label">Publications</span>
+
+    <div class="pub-category">Peer-Reviewed</div>
+    <ul class="pubs">
+      <li>
+        <strong>Ndubuisi, C.W.</strong> and Kazic, T. (2026).
+        <span class="title">HyperTopo-Adapters: Geometry- and Topology-Aware Segmentation of Leaf Lesions on Frozen Encoders.</span>
+        <span class="venue">arXiv:2601.06067.</span>
+        <span class="pub-links">
+          <a href="https://arxiv.org/abs/2601.06067" target="_blank">arXiv</a>
+          <a href="https://github.com/ChimdiWalter/HyperTopo-Adapters" target="_blank">Code</a>
+        </span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong>, Kazic, T., Kharismawati, D.E. (2023).
+        <span class="title">Imaging Maize Lesions.</span>
+        <span class="venue">North American Plant Phenotyping Network (NAPPN).</span>
+        <span class="pub-links">
+          <a href="https://doi.org/10.22541/au.166505708.85410753/v1" target="_blank">DOI</a>
+        </span>
+      </li>
+      <li>
+        Somoye, O.I., <strong>Ndubuisi, C.W.</strong>, Donatus, S., Amakye, F. (2025).
+        <span class="title">Scalable Machine Learning Algorithms for Processing High-Dimensional Data.</span>
+        <span class="venue">Asian J. Adv. Res. &amp; Reports.</span>
+        <span class="pub-links">
+          <a href="https://doi.org/10.9734/ajarr/2025/v19i61064" target="_blank">DOI</a>
+        </span>
+      </li>
+      <li>
+        Eleweke, I., Umakor, M.F., <strong>Ndubuisi, C.W.</strong>, et al. (2025).
+        <span class="title">AI-Driven Threat Detection and Prevention in Cloud Computing Environments.</span>
+        <span class="venue">AJISE.</span>
+      </li>
+    </ul>
+
+    <div class="pub-category">Manuscripts in Preparation</div>
+    <ul class="pubs">
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">Geometric Decoding of Pathology Foundation Models Reveals Morphology-Encoded Gene Programmes in Breast Cancer.</span>
+        <span class="pub-links"><a href="https://github.com/ChimdiWalter/Pathology_Atlas" target="_blank">Code</a></span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">Task-Sufficient Manifold Distillation of Learned Representations.</span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">When Does Nonlinearity Matter? Structural Accessibility and the Geometry&ndash;Dynamics&ndash;Interpretability Tradeoff in Single-Cell Modeling.</span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">Ontology-Guided Pathway Attention Reveals a Cell-Intrinsic Inflammatory Axis of Kinase Inhibitor Sensitivity.</span>
+        <span class="pub-links"><a href="https://github.com/ChimdiWalter/GOPA-ontology-pathway-attention" target="_blank">Code</a></span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">Geometric-Relational Diagnosis Spaces for Multi-LLM Clinical Reasoning.</span>
+        <span class="pub-links"><a href="https://github.com/ChimdiWalter/Geometric-relational-Reasoning-" target="_blank">Code</a></span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">A Reproducible Benchmark of Geometry-Aware Causal Discovery for Genome-Scale Perturb-seq.</span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> and Olaoye, D. (2026).
+        <span class="title">Geometry-Sensitive Persistent Representatives for Omics: A Sparse Extension of Harmonic Persistent Homology with Multi-Backend Geometry.</span>
+        <span class="pub-links"><a href="https://github.com/ChimdiWalter/Omics_Project_CCSPR" target="_blank">Code</a></span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> and Kazic, T. (2026).
+        <span class="title">Gradient-Free Stochastic Optimization of Navier&ndash;Stokes Active Contours for Unsupervised High-Throughput Phenotyping.</span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> and Kazic, T. (2026).
+        <span class="title">Selective Semi-Amortized Inference for Physics-Based Lesion Phenotyping: Uncertainty-Guided Runtime&ndash;Quality Tradeoffs.</span>
+      </li>
+      <li>
+        <strong>Ndubuisi, C.W.</strong> (2026).
+        <span class="title">Trajectory Analysis of Alveolar Epithelial State Coherence in Lethal COVID-19.</span>
+        <span class="pub-links"><a href="https://github.com/ChimdiWalter/alveolar-dispersion-covid19" target="_blank">Code</a></span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Projects -->
+  <div class="section">
+    <span class="section-label">Projects</span>
+    <div class="projects">
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/segmentors-backbones-optimization" target="_blank">HPC Segmentation Suite</a></h3>
+        <p>Containerized wavelet + NS-diffusion + active contours + SSL/SAM pipeline. Docker/Apptainer, reproducible SLURM on Hellbender &amp; Lewis.</p>
+      </div>
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/ricci_curvature" target="_blank">Ricci-Curvature Classification</a></h3>
+        <p>Ollivier and Forman Ricci curvature as geometric features for supervised classification of omics and imaging data.</p>
+      </div>
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI" target="_blank">ARC-AGI Hybrid Solver</a></h3>
+        <p>Symbolic-first DSL planner with LLM fallback and ViT perception. ~65% pixel accuracy on unseen test data. Top-6 finalist, MU Hackathon.</p>
+      </div>
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/GOPA-ontology-pathway-attention" target="_blank">GOPA</a></h3>
+        <p>Deterministic GO-projected pathway representations for cancer drug response prediction via ontology-guided attention.</p>
+      </div>
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/Pathology_Atlas" target="_blank">Pathology Atlas</a></h3>
+        <p>Geometric decoding of pathology foundation models to reveal morphology-encoded gene programmes in breast cancer.</p>
+      </div>
+      <div class="proj">
+        <h3><a href="https://github.com/ChimdiWalter/Omics_Project_CCSPR" target="_blank">CC-SPR</a></h3>
+        <p>Geometry-sensitive sparse persistent representatives for interpretable omics feature selection via persistent homology.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Honors -->
+  <div class="section">
+    <span class="section-label">Honors</span>
+    <ul class="honors">
+      <li>Honorable Mention, Nexus Informatics Conference (2026)</li>
+      <li>Wolfram Summer Research Institute (2026)</li>
+      <li>Vice-Programming Director, Graduate Professional Council (2024&ndash;25)</li>
+      <li>Finalist (Top 6), ARC-AGI-2 Hackathon (2025)</li>
+      <li>Second-Best Poster, DAREC Symposium (2025)</li>
+      <li>EECS Departmental Fellowship (2021)</li>
+      <li>Gold Medal &amp; Best African Student, Intl. Junior Science Olympiad (2010)</li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+    Chimdi Walter Ndubuisi &middot; University of Missouri &middot; MMCV Lab
+  </footer>
+
+</div>
+
+</body>
+</html>
